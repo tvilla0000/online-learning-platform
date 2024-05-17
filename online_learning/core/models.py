@@ -1,10 +1,25 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
 # Create your models here.
 
 # Here is our model for the Users
 class User(AbstractUser):
+    groups = models.ManyToManyField(
+        Group,
+        related_name='custom_use_set',
+        blank=True,
+        help_text='The groups this user belongs to. A user will get permissions granted to each of their groups.',
+        related_query_name='user',
+    )
+    users_permissions = models.ManyToManyField(
+        Permission,
+        related_name='custom_user_permissions_set',
+        blank=True,
+        help_text='Specific permissions for this user',
+        related_query_name='user'
+    )
+
     pass
 
 # Here is our model for the Courses
