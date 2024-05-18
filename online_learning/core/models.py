@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
+import datetime
 
 # Create your models here.
 
@@ -19,6 +20,20 @@ class User(AbstractUser):
         help_text='Specific permissions for this user',
         related_query_name='user'
     )
+
+    ROLE_CHOICES = [
+        ('student', 'Student'),
+        ('instructor', 'Instructor'),
+    ]
+
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default="student")
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
+    bio = models.TextField(max_length=500, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    enrollment_date = models.DateField(default=datetime.date.today)
+    phone_number = models.CharField(max_length=15, blank=True)
+    address = models.CharField(max_length=255, blank=True)
+    linkedin_profile = models.URLField(max_length=200, blank=True)
 
     pass
 
