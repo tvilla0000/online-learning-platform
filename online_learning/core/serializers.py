@@ -5,7 +5,7 @@ from .models import User, Course, Lesson, Quiz, Enrollment
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'password']
+        fields = ['id', 'username', 'email', 'password', 'role', 'profile_picture', 'bio', 'date_of_birth', 'address', 'linkedin_profile', 'enrollment_date', 'phone_number', 'skills']
         extra_kwargs = {'password': {'write_only': True}}
 
     def Create(self, validated_data): 
@@ -34,5 +34,5 @@ class EnrollmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrollment
         fields = '__all__'
-        
+
 

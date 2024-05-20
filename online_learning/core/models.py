@@ -34,6 +34,7 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=15, blank=True)
     address = models.CharField(max_length=255, blank=True)
     linkedin_profile = models.URLField(max_length=200, blank=True)
+    skills = models.CharField(max_length=255, blank=True)
 
     pass
 
