@@ -4,8 +4,12 @@ from rest_framework.permissions import IsAuthenticated
 from .models import User, Course, Lesson, Quiz, Enrollment
 from .serializers import UserSerializer, CourseSerializer, LessonSerializer, QuizSerializer, EnrollmentSerializer
 from .permissions import IsInstructor
+from django.http import HttpResponse
 
 # Create your views here.
+
+def index(request):
+    return HttpResponse("Welcome to the Online Learning Platform API!")
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
